@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "2.7.0-M3"
+    id("org.springframework.boot") version "2.7.0-M3" apply false
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
@@ -10,9 +10,19 @@ group = "brc.webflux.response.wrapper"
 version = "0.1.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/milestone") }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    }
 }
 
 dependencies {
