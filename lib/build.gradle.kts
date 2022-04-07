@@ -14,11 +14,9 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-publishing {
-    publications {
-        register("mavenJava", MavenPublication::class) {
-            from(components["java"])
-        }
+publishing.publications {
+    register("mavenJava", MavenPublication::class) {
+        from(components["java"])
     }
 }
 
