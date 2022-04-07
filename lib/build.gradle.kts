@@ -14,6 +14,14 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+publishing {
+    publications {
+        register("mavenJava", MavenPublication::class) {
+            from(components["java"])
+        }
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/milestone") }
