@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "brc.webflux.response.wrapper"
-version = "0.1.0"
+version = "0.2.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 tasks.withType<Test> {
@@ -42,7 +42,4 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }

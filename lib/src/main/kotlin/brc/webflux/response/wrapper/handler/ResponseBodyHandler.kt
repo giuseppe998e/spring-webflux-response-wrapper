@@ -13,14 +13,13 @@ import reactor.core.publisher.Mono
 
 internal class ResponseBodyHandler(
     writers: List<HttpMessageWriter<*>>, resolver: RequestedContentTypeResolver
-) : ResponseBodyResultHandler(writers, resolver)
-{
+) : ResponseBodyResultHandler(writers, resolver) {
     override fun supports(result: HandlerResult): Boolean =
         result.returnType.resolve() == Mono::class.java || result.returnType.resolve() == Flux::class.java
 
-    @Throws(ClassCastException::class)
     override fun handleResult(exchange: ServerWebExchange, result: HandlerResult): Mono<Void> {
         val returnValue = Mono.justOrEmpty(result.returnValue)
+            .defaultIfEmpty(Response(true, null, null))
             .flatMap { v ->
                 (v as? Flux<*>)?.collectList()
                     ?: (v as? Mono<*>)
