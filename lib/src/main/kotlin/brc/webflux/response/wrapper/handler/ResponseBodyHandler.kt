@@ -19,13 +19,13 @@ internal class ResponseBodyHandler(
 
     override fun handleResult(exchange: ServerWebExchange, result: HandlerResult): Mono<Void> {
         val returnValue = Mono.justOrEmpty(result.returnValue)
-            .defaultIfEmpty(Response(true, null, null))
             .flatMap { v ->
                 (v as? Flux<*>)?.collectList()
                     ?: (v as? Mono<*>)
                     ?: Mono.error(ClassCastException("The response body must be wrapped in Mono or Flux!"))
             }
             .map { d -> Response(true, d, null) }
+            .defaultIfEmpty(Response(true, null, null))
             .onErrorMap { e ->
                 when (e) {
                     !is Response.Error -> {
