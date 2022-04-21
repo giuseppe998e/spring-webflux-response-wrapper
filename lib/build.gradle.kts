@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "brc.webflux.response.wrapper"
-version = "0.2.0"
+version = "0.2.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 tasks.withType<Test> {
