@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "2.7.0-M3" apply false
+    id("org.springframework.boot") version "2.7.0-RC1" apply false
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "brc.webflux.response.wrapper"
-version = "0.2.1"
+version = "0.2.2"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 tasks.withType<Test> {
