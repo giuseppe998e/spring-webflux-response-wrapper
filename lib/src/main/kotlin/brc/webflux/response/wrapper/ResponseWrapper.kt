@@ -43,7 +43,7 @@ class ResponseWrapper {
     )
 
     @Bean
-    @Order(-2)
+    @Order(-10)
     fun webExceptionWrapper(): AbstractErrorWebExceptionHandler = WebExceptionHandler(
         viewResolvers, serverCodecConfigurer, applicationContext, errorAttributes, resources
     )
