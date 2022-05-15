@@ -17,34 +17,27 @@ import org.springframework.web.reactive.accept.RequestedContentTypeResolver
 import org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler
 import org.springframework.web.reactive.result.view.ViewResolver
 
-@ComponentScan
 @Configuration
 class ResponseWrapper {
     @Autowired
     private lateinit var serverCodecConfigurer: ServerCodecConfigurer
 
-    @Autowired
-    private lateinit var requestedContentTypeResolver: RequestedContentTypeResolver
-
-    @Autowired
-    private lateinit var viewResolvers: ObjectProvider<ViewResolver>
-
-    @Autowired
-    private lateinit var errorAttributes: ErrorAttributes
-
-    @Autowired
-    private lateinit var applicationContext: ApplicationContext
-
     private val resources: WebProperties.Resources = WebProperties.Resources()
 
     @Bean
-    fun responseBodyWrapper(): ResponseBodyResultHandler = ResponseBodyHandler(
-        serverCodecConfigurer.writers, requestedContentTypeResolver
-    )
+    fun responseBodyWrapper(
+        requestedContentTypeResolver: RequestedContentTypeResolver
+    ): ResponseBodyResultHandler =
+        ResponseBodyHandler(serverCodecConfigurer.writers, requestedContentTypeResolver)
 
     @Bean
-    @Order(-2)
-    fun webExceptionWrapper(): AbstractErrorWebExceptionHandler = WebExceptionHandler(
-        viewResolvers, serverCodecConfigurer, applicationContext, errorAttributes, resources
-    )
+    @Order(-10)
+    fun webExceptionWrapper(
+        viewResolvers: ObjectProvider<ViewResolver>,
+        errorAttributes: ErrorAttributes,
+        applicationContext: ApplicationContext
+    ): AbstractErrorWebExceptionHandler =
+        WebExceptionHandler(
+            viewResolvers, serverCodecConfigurer, applicationContext, errorAttributes, resources
+        )
 }
