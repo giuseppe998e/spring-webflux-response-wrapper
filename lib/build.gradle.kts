@@ -1,13 +1,13 @@
 plugins {
-    id("org.springframework.boot") version "2.7.0-RC1" apply false
+    id("org.springframework.boot") version "2.7.3" apply false
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.10"
-    kotlin("plugin.spring") version "1.6.10"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
     `maven-publish`
 }
 
 group = "brc.webflux.response.wrapper"
-version = "0.2.3"
+version = "0.2.4"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 tasks.withType<Test> {
@@ -22,7 +22,6 @@ publishing.publications {
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://repo.spring.io/milestone") }
 }
 
 dependencyManagement {
