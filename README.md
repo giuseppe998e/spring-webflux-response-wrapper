@@ -35,7 +35,7 @@ This library allows you to wrap the content of REST responses in the format:
 <dependency>
     <groupId>com.github.giuseppe998e</groupId>
     <artifactId>spring-webflux-response-wrapper</artifactId>
-    <version>v0.2.3</version>
+    <version>v0.2.4</version>
 </dependency>
 ```
 
@@ -52,7 +52,7 @@ allprojects {
 **2.** Add dependency:
 ```groovy
 dependencies {
-    implementation 'com.github.giuseppe998e:spring-webflux-response-wrapper:v0.2.3'
+    implementation 'com.github.giuseppe998e:spring-webflux-response-wrapper:v0.2.4'
 }
 ```
 
